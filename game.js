@@ -33,8 +33,8 @@ class FlappyBird {
         this.score = 0;
         
         // Bird properties
-        const birdWidth = Math.max(this.canvas.width * 0.10, 120);
-        const birdHeight = Math.max(this.canvas.height * 0.10, 90);
+        const birdWidth = Math.max(this.canvas.width * 0.10, 90);
+        const birdHeight = Math.max(this.canvas.height * 0.10, 60);
         const isSmallScreen = this.canvas.width < 500 || this.canvas.height < 500;
         const minJump = -1;
         const maxJump = -8;
