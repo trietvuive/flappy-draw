@@ -35,12 +35,12 @@ class FlappyBird {
         // Bird properties
         this.bird = {
             x: this.canvas.width * 0.15, // 15% from left
-            y: this.canvas.height / 2,
+            y: this.canvas.height / 3, // Start 1/3 from the top
             width: this.canvas.width * 0.1, // 10% of screen width
             height: this.canvas.width * 0.075, // 7.5% of screen width
-            gravity: 0.15, // Reduced gravity for slower falling
+            gravity: 0.09, // Slower gravity
             velocity: 0,
-            jump: -4, // Reduced jump force to match new gravity
+            jump: -5, // Slightly less bouncy jump
             hitboxPadding: 0.2 // 20% padding on all sides
         };
         
@@ -212,15 +212,22 @@ class FlappyBird {
         if (this.gameStarted && !this.gameOver) {
             this.bird.velocity += this.bird.gravity;
             this.bird.y += this.bird.velocity;
-        } else if (this.gameOver) {
-            // Clamp the bird to the ground or ceiling
-            if (this.bird.y + this.bird.height > this.canvas.height) {
+            // Check for ground/ceiling collision
+            if (this.bird.y + this.bird.height >= this.canvas.height) {
                 this.bird.y = this.canvas.height - this.bird.height;
                 this.bird.velocity = 0;
-            } else if (this.bird.y < 0) {
+                this.gameOver = true;
+            } else if (this.bird.y <= 0) {
                 this.bird.y = 0;
                 this.bird.velocity = 0;
+                this.gameOver = true;
             }
+        } else if (this.bird.y + this.bird.height > this.canvas.height) {
+            this.bird.y = this.canvas.height - this.bird.height;
+            this.bird.velocity = 0;
+        } else if (this.bird.y < 0) {
+            this.bird.y = 0;
+            this.bird.velocity = 0;
         }
     }
     
@@ -275,7 +282,7 @@ class FlappyBird {
         this.gameStarted = false;
         this.gameOver = false;
         this.score = 0;
-        this.bird.y = this.canvas.height / 2;
+        this.bird.y = this.canvas.height / 3;
         this.bird.velocity = 0;
         this.pipes = [];
         this.pipeTimer = 0;
