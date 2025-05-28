@@ -42,9 +42,9 @@ class FlappyBird {
             y: this.canvas.height / 3, // Start 1/3 from the top
             width: birdWidth,
             height: birdHeight,
-            gravity: isMobile ? 0.28 : 0.18, // Faster gravity for mobile
+            gravity: isMobile ? 0.28 : 0.08, // Faster gravity for mobile
             velocity: 0,
-            jump: isMobile ? -2.5 : -4, // Smaller jump for mobile
+            jump: isMobile ? -2.5 : -5, // Smaller jump for mobile
             hitboxPadding: 0.2 // 20% padding on all sides
         };
         
