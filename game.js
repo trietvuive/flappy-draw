@@ -33,11 +33,13 @@ class FlappyBird {
         this.score = 0;
         
         // Bird properties
+        const birdWidth = Math.max(this.canvas.width * 0.10, 180); // 18% of width, min 180px
+        const birdHeight = Math.max(this.canvas.height * 0.10, 120); // 18% of height, min 120px
         this.bird = {
             x: this.canvas.width * 0.15, // 15% from left
             y: this.canvas.height / 3, // Start 1/3 from the top
-            width: 210, // Width in pixels
-            height: 150, // Height in pixels
+            width: birdWidth,
+            height: birdHeight,
             gravity: 0.09, // Slower gravity
             velocity: 0,
             jump: -5, // Slightly less bouncy jump
@@ -92,7 +94,9 @@ class FlappyBird {
         this.canvas.height = window.innerHeight;
         // Update game elements
         this.bird.x = this.canvas.width * 0.15;
-        // Keep bird width and height fixed in pixels
+        // Recalculate bird size with min size
+        this.bird.width = Math.max(this.canvas.width * 0.10, 180);
+        this.bird.height = Math.max(this.canvas.height * 0.10, 120);
         this.pipeWidth = this.canvas.width * 0.1; // Updated to match constructor
         this.pipeGap = this.canvas.height * 0.35; // Updated to match constructor
         this.pipeSpeed = this.canvas.width * 0.002; // Updated to match constructor
