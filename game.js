@@ -40,7 +40,7 @@ class FlappyBird {
             y: this.canvas.height / 3, // Start 1/3 from the top
             width: birdWidth,
             height: birdHeight,
-            gravity: 0.12, // Slower gravity
+            gravity: 0.18, // Increased gravity for faster fall
             velocity: 0,
             jump: -4, // Slightly less bouncy jump
             hitboxPadding: 0.2 // 20% padding on all sides
