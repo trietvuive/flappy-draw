@@ -61,6 +61,10 @@ class FlappyBird {
         this.bestScore = parseInt(localStorage.getItem('flappyBestScore')) || 0;
         document.getElementById('bestScore').textContent = `Best: ${this.bestScore}`;
         
+        // Game speed
+        this.gameSpeed = 1.0;
+        document.getElementById('speed').textContent = `Speed: ${this.gameSpeed.toFixed(1)}x`;
+        
         // Start game loop
         this.lastTime = performance.now();
         console.log('Starting game loop...');
@@ -163,7 +167,7 @@ class FlappyBird {
         
         for (let i = this.pipes.length - 1; i >= 0; i--) {
             const pipe = this.pipes[i];
-            pipe.x -= this.pipeSpeed;
+            pipe.x -= this.pipeSpeed * this.gameSpeed;
             
             // Check collision
             if (this.checkCollision(pipe)) {
@@ -181,6 +185,9 @@ class FlappyBird {
                 pipe.passed = true;
                 this.score++;
                 document.getElementById('score').textContent = `Score: ${this.score}`;
+                // Increase game speed
+                this.gameSpeed += 0.07;
+                document.getElementById('speed').textContent = `Speed: ${this.gameSpeed.toFixed(1)}x`;
             }
             
             // Remove off-screen pipes
@@ -296,8 +303,10 @@ class FlappyBird {
         this.bird.velocity = 0;
         this.pipes = [];
         this.pipeTimer = 0;
+        this.gameSpeed = 1.0;
         document.getElementById('score').textContent = 'Score: 0';
         document.getElementById('bestScore').textContent = `Best: ${this.bestScore}`;
+        document.getElementById('speed').textContent = `Speed: ${this.gameSpeed.toFixed(1)}x`;
     }
     
     animate(currentTime) {

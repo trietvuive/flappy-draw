@@ -58,6 +58,16 @@ body {
     z-index: 1000;
 }
 
+#speed {
+    position: fixed;
+    top: 140px;
+    left: 20px;
+    font-size: clamp(28px, 5vw, 48px);
+    color: #00bfff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
 #gameOver {
     position: fixed;
     top: 50%;
