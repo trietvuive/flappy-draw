@@ -32,19 +32,28 @@ class FlappyBird {
         this.gameOver = false;
         this.score = 0;
         
-        // Detect mobile
-        const isMobile = /Mobi|Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
         // Bird properties
         const birdWidth = Math.max(this.canvas.width * 0.10, 120);
         const birdHeight = Math.max(this.canvas.height * 0.10, 90);
+        const isSmallScreen = this.canvas.width < 500 || this.canvas.height < 500;
+        const minJump = -2.5;
+        const maxJump = -8;
+        const minGravity = 0.08;
+        const maxGravity = 0.28;
+        const minHeight = 300;
+        const maxHeight = 1000;
+        let jumpValue = minJump + (maxJump - minJump) * ((this.canvas.height - minHeight) / (maxHeight - minHeight));
+        jumpValue = Math.max(Math.min(jumpValue, minJump), maxJump); // Clamp between maxJump and minJump
+        let gravityValue = minGravity + (maxGravity - minGravity) * ((this.canvas.height - minHeight) / (maxHeight - minHeight));
+        gravityValue = Math.max(Math.min(gravityValue, maxGravity), minGravity); // Clamp between minGravity and maxGravity
         this.bird = {
             x: this.canvas.width * 0.15, // 15% from left
             y: this.canvas.height / 3, // Start 1/3 from the top
             width: birdWidth,
             height: birdHeight,
-            gravity: isMobile ? 0.28 : 0.08, // Faster gravity for mobile
+            gravity: gravityValue, // Gravity scales linearly with screen height
             velocity: 0,
-            jump: isMobile ? -2.5 : -5, // Smaller jump for mobile
+            jump: jumpValue, // Jump scales linearly with screen height
             hitboxPadding: 0.2 // 20% padding on all sides
         };
         
