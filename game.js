@@ -36,10 +36,10 @@ class FlappyBird {
         const birdWidth = Math.max(this.canvas.width * 0.10, 120);
         const birdHeight = Math.max(this.canvas.height * 0.10, 90);
         const isSmallScreen = this.canvas.width < 500 || this.canvas.height < 500;
-        const minJump = -2.5;
+        const minJump = -1;
         const maxJump = -8;
         const minGravity = 0.08;
-        const maxGravity = 0.28;
+        const maxGravity = 0.40;
         const minHeight = 300;
         const maxHeight = 1000;
         let jumpValue = minJump + (maxJump - minJump) * ((this.canvas.height - minHeight) / (maxHeight - minHeight));
