@@ -36,8 +36,8 @@ class FlappyBird {
         this.bird = {
             x: this.canvas.width * 0.15, // 15% from left
             y: this.canvas.height / 3, // Start 1/3 from the top
-            width: this.canvas.width * 0.1, // 10% of screen width
-            height: this.canvas.width * 0.075, // 7.5% of screen width
+            width: 210, // Width in pixels
+            height: 150, // Height in pixels
             gravity: 0.09, // Slower gravity
             velocity: 0,
             jump: -5, // Slightly less bouncy jump
@@ -90,16 +90,12 @@ class FlappyBird {
         // Update canvas size
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
-        
         // Update game elements
-        this.bird.width = this.canvas.width * 0.1;
-        this.bird.height = this.canvas.width * 0.075;
         this.bird.x = this.canvas.width * 0.15;
-        
+        // Keep bird width and height fixed in pixels
         this.pipeWidth = this.canvas.width * 0.1; // Updated to match constructor
         this.pipeGap = this.canvas.height * 0.35; // Updated to match constructor
         this.pipeSpeed = this.canvas.width * 0.002; // Updated to match constructor
-        
         // Reset game if it's running
         if (this.gameStarted) {
             this.resetGame();
