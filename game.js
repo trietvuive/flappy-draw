@@ -57,6 +57,10 @@ class FlappyBird {
         document.addEventListener('touchstart', this.handleTouch.bind(this));
         document.addEventListener('click', this.handleClick.bind(this));
         
+        // Best score
+        this.bestScore = parseInt(localStorage.getItem('flappyBestScore')) || 0;
+        document.getElementById('bestScore').textContent = `Best: ${this.bestScore}`;
+        
         // Start game loop
         this.lastTime = performance.now();
         console.log('Starting game loop...');
@@ -164,6 +168,12 @@ class FlappyBird {
             // Check collision
             if (this.checkCollision(pipe)) {
                 this.gameOver = true;
+                // Update best score if needed
+                if (this.score > this.bestScore) {
+                    this.bestScore = this.score;
+                    localStorage.setItem('flappyBestScore', this.bestScore);
+                    document.getElementById('bestScore').textContent = `Best: ${this.bestScore}`;
+                }
             }
             
             // Update score
@@ -287,6 +297,7 @@ class FlappyBird {
         this.pipes = [];
         this.pipeTimer = 0;
         document.getElementById('score').textContent = 'Score: 0';
+        document.getElementById('bestScore').textContent = `Best: ${this.bestScore}`;
     }
     
     animate(currentTime) {

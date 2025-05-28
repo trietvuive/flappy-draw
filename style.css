@@ -42,8 +42,18 @@ body {
     position: fixed;
     top: 20px;
     left: 20px;
-    font-size: clamp(24px, 5vw, 48px);
+    font-size: clamp(28px, 5vw, 48px);
     color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+#bestScore {
+    position: fixed;
+    top: 80px;
+    left: 20px;
+    font-size: clamp(28px, 5vw, 48px);
+    color: #ffd700;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     z-index: 1000;
 }
