@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: fixed;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #87CEEB, #E0F6FF);
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#gameCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #70C5CE;
+    display: block;
+}
+
+#score {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    font-size: clamp(24px, 5vw, 48px);
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+#gameOver {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: clamp(20px, 5vw, 40px);
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+#gameOver h2 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size: clamp(24px, 5vw, 48px);
+}
+
+#gameOver p {
+    color: #666;
+    font-size: clamp(16px, 3vw, 24px);
+}
+
+.hidden {
+    display: none;
+}
+
+/* Full screen styles */
+:fullscreen {
+    width: 100vw;
+    height: 100vh;
+}
+
+:-webkit-full-screen {
+    width: 100vw;
+    height: 100vh;
+}
+
+:-moz-full-screen {
+    width: 100vw;
+    height: 100vh;
+}
+
+:-ms-fullscreen {
+    width: 100vw;
+    height: 100vh;
+} 
