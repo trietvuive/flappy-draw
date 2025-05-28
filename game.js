@@ -40,7 +40,7 @@ class FlappyBird {
         const maxJump = -8;
         const minGravity = 0.08;
         const maxGravity = 0.40;
-        const minHeight = 300;
+        const minHeight = 200;
         const maxHeight = 1000;
         let jumpValue = minJump + (maxJump - minJump) * ((this.canvas.height - minHeight) / (maxHeight - minHeight));
         jumpValue = Math.max(Math.min(jumpValue, minJump), maxJump); // Clamp between maxJump and minJump
@@ -58,12 +58,18 @@ class FlappyBird {
         };
         
         // Pipe properties
+        const minSpacing = 1800; // ms, for wide screens
+        const maxSpacing = 3500; // ms, for narrow screens
+        const minWidth = 400;
+        const maxWidth = 1200;
+        let pipeSpacing = minSpacing + (maxSpacing - minSpacing) * ((maxWidth - this.canvas.width) / (maxWidth - minWidth));
+        pipeSpacing = Math.max(Math.min(pipeSpacing, maxSpacing), minSpacing);
         this.pipes = [];
-        this.pipeWidth = this.canvas.width * 0.1; // Reduced from 0.15 to 0.1 (10% of screen width)
-        this.pipeGap = this.canvas.height * 0.35; // Increased gap from 0.3 to 0.35 (35% of screen height)
-        this.pipeSpacing = 3000; // Increased spacing between pipes (3 seconds)
+        this.pipeWidth = this.canvas.width * 0.1; // 10% of screen width
+        this.pipeGap = this.canvas.height * 0.35; // 35% of screen height
+        this.pipeSpacing = pipeSpacing;
         this.pipeTimer = 0;
-        this.pipeSpeed = this.canvas.width * 0.002; // Reduced from 0.005 to 0.002 (0.2% of screen width per frame)
+        this.pipeSpeed = this.canvas.width * 0.002;
         
         // Event listeners
         document.addEventListener('keydown', this.handleKeyDown.bind(this));
